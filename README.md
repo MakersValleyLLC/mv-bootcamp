@@ -3,6 +3,11 @@ This is the MakersValley Bootcamp  code repo. All codes from all bootcamps are s
 # Frontend
 ## Intro
 All UI/UX and other frontend related code are stored in here. Those working in the frontend will be work from here. This is preconfigured with a nodejs server.
+## Tech Used
+- AngularJS 1.x
+- CSS3
+- MaterializeCSS
+- HTML5
 ## Requirements
 To work in the backend you need to install the following:
 - Node.js - https://nodejs.org/en/
@@ -14,6 +19,10 @@ To start the server for the frontend:
 # Backend
 ## Intro
 All logic, API codes and otehr backend related codes are storeid in here. Those working in the backend will work from here. This is preconfigured with homestead ready to create an nginx.
+## Tech Used
+- Laravel
+- Homestead
+- MySQL
 ## Requirements
 - VirtualBox - https://www.virtualbox.org/wiki/Downloads
 - Vagrant - https://www.vagrantup.com/
