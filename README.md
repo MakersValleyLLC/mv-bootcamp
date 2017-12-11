@@ -14,7 +14,7 @@ To work in the backend you need to install the following:
 ## Getting Started
 To start the server for the frontend:
 - Navigate to the frontend folder with your terminal
-- For the first time starting the server, run *npm install*
+- For the first time starting the server, run *npm init* then *npm install*
 - Run **node index.js**
 # Backend
 ## Intro
@@ -36,7 +36,7 @@ To work from the virtual machine to run server commands
 - Run **vagrant ssh**
 ## Connect MySQL Workbench to Homestead
 Use these parameters to connect MySQL workbench to the homestead database:
-- Hostname: 192.168.10.10
+- Hostname: 192.168.30.10
 - Username: homestead
 - Password: secret
 # Current Mach: I
