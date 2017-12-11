@@ -34,6 +34,32 @@ To start the server for the backend:
 - Run **vagrant up**
 To work from the virtual machine to run server commands
 - Run **vagrant ssh**
+
+## Possible Issue I: Missing Homestead
+If your first vagrant up returns "missing homestead files", you might need to download Composer manually. 
+- https://getcomposer.org/doc/00-intro.md (If you don't have them installed, you might need to install Visual C++ as and download PHP as well).
+- After installing Composer, from termin in the backend folder run
+**composer require laravel/homestead --dev**
+Then run
+**php vendor/bin/homestead make**
+for Windows/Linux
+**vendor\\bin\\homestead make**
+
+at this point you should be able to vagrant up your folder and continue 
+
+## Possible Issue II: Missing SSH Key or Private Keys
+If running vagrant up you cannot continue because you miss private keys, it's possible you need to generate them.
+- From terminal run **ssh-keygen -t rsa -b 4096 -C "your_email@example.com"** 
+use enter to generate them in the default path.
+after you have them, vagrant up and vagrant ssh to check if your page is loading at bootcamp.mv.
+
+In case you don't, you might still have issue mapping your keys. 
+- In the backend folder, change the env.example file into .env using notepad (or similar)
+from terminal run **php artisan key:generate**
+- it should return a message telling you private keys were generated correctly.
+Now from terminal on the backend folder run: vagrant roload, vagrant up, vagrant ssh and check bootcamp.mv
+
+
 ## Connect MySQL Workbench to Homestead
 Use these parameters to connect MySQL workbench to the homestead database:
 - Hostname: 192.168.30.10
