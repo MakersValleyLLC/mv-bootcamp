@@ -16,6 +16,7 @@ To start the server for the frontend:
 - Navigate to the frontend folder with your terminal
 - For the first time starting the server, run *npm init* then *npm install*
 - Run **node index.js**
+in case the command cannoit find the module *express* run **npm install express --save** and try again.
 # Backend
 ## Intro
 All logic, API codes and otehr backend related codes are storeid in here. Those working in the backend will work from here. This is preconfigured with homestead ready to create an nginx.
