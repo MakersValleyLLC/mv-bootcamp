@@ -1,0 +1,60 @@
+/*General stylings*/
+.custom-navbar {
+	background: #3ab449;
+	padding: 0 1%;
+	outline: 1px solid transparent;
+	box-shadow:  0 0 0 transparent,
+		0 0 0 transparent !important;
+}
+
+.bg-custom-color {
+	background: #3ab449;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-color-custom {
+	color: #3ab449;
+}
+
+.text-bold {
+	font-weight: bold;
+}
+
+
+/*stylings for the landing page*/
+.projects-div {
+	margin-top: -10vh;
+	position: relative;
+	z-index: 999999;
+}
+
+.projects-row {
+	background: #f7f7f7;
+	padding: 3% 0;
+}
+
+.projects-row  a {
+	color: #111;
+}
+
+.projects-item {
+	padding: 5px;
+	width: 90%;
+	margin-left: 5%;
+	transition: all 0.2s ease-in;
+}
+.projects-item:hover {
+	box-shadow:  2px 5px 10px #c0c0c0,
+		2px 6px 12px #c0c0c0 !important;
+		transform: scale(1.02);
+}
+
+.projects-img {
+	width: 90%;
+	height: 200px;
+	margin-left: 5%;
+	border-radius: 100%;
+}
