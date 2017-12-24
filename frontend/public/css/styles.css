@@ -23,12 +23,15 @@
 	font-weight: bold;
 }
 
+.sidenav {
+	z-index: 9999 !important;
+}
 
 /*stylings for the landing page*/
 .projects-div {
 	margin-top: -10vh;
 	position: relative;
-	z-index: 999999;
+	z-index: 999;
 }
 
 .projects-row {
@@ -43,7 +46,7 @@
 .projects-item {
 	padding: 5px;
 	width: 90%;
-	margin-left: 5%;
+	margin: 0 0 5% 5%;
 	transition: all 0.2s ease-in;
 }
 .projects-item:hover {
@@ -57,4 +60,23 @@
 	height: 200px;
 	margin-left: 5%;
 	border-radius: 100%;
+}
+
+/*Styling for the 404 page*/
+.error-404-div {
+	padding: 10vh;
+}
+
+.error-404-div * {
+	color: #c0c0c0;
+	font-weight: bold;
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.error-404-div h1 {
+	font-size: 300px;
+}
+
+.error-404-div h3 {
+	font-size: 100px;
 }

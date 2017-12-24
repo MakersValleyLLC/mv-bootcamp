@@ -1,13 +1,19 @@
 <!-- Navbar -->
-<nav class="custom-navbar">
-	<div class="nav-wrapper">
-		<a href="#" class="brand-logo">Logo</a>
-		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a href="">login</a></li>
-			<li><a href="">Signup</a></li>
-		</ul>
-	</div>
+ <nav class="custom-navbar">
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Logo</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger button-collapse"><i class="fa fa-bars"></i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="">Login</a></li>
+        <li><a href="">Signup</a></li>
+      </ul>
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="">Login</a></li>
+        <li><a href="">Signup</a></li>
+      </ul>
+    </div>
 </nav>
+         
 
 <!-- Intro div -->
 <div class="carousel carousel-slider center home-intro-slider">
@@ -17,14 +23,14 @@
 		<h3>Makers Valley BootCamp</h3>
 		
 		<section class="row">
-			<section class="col s2"></section>
-			<section class="col s8">
+			<section class="col m2"></section>
+			<section class="col s12 m8">
 				<h5>About The BootCamp</h5>
 				<p class="white-text">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 				</p>
 			</section>
-			<section class="col s2"></section>
+			<section class="col m2"></section>
 		</section>
 	</div>
 </div>
@@ -32,12 +38,14 @@
 <!-- Main div -->
 <section class="projects-div">
 	<section class="row">
-		<section class="col s2"></section>
-		<section class="col s8">
+		<section class="col m2"></section>
+
+		<section class="col m8 s12">
 			<section class="projects-row">
 				<h4 class="text-center">Projects</h4>
+				
 				<section class="row">
-					<section class="col s4">
+					<section class="col s12 m4">
 						<a href="" >
 							<section class="projects-item">
 								<img src="../images/demo-img.jpg" alt="image" class="projects-img"><br/>
@@ -47,7 +55,7 @@
 						</a>
 					</section>
 
-					<section class="col s4">
+					<section class="col s12 m4">
 						<a href="" >
 							<section class="projects-item">
 								<img src="../images/demo-img.jpg" alt="image" class="projects-img"><br/>
@@ -57,7 +65,7 @@
 						</a>
 					</section>
 
-					<section class="col s4">
+					<section class="col s12 m4">
 						<a href="" >
 							<section class="projects-item">
 								<img src="../images/demo-img.jpg" alt="image" class="projects-img"><br/>
@@ -69,11 +77,14 @@
 				</section>
 			</section>
 		</section>
-		<section class="col s2"></section>
+		<section class="col m2"></section>
 	</section>
 </section>
 
- <section class="footer-div">
- 	<p class="text-center">Makers Valley. All Rights Reserved &copy; 2017.</p>
+<!-- footer div -->
+ <section class="footer-div" ng-cloak>
+ 	<p class="text-center">Makers Valley. All Rights Reserved &copy; {{ thisYear}}.</p>
  </section>
+
+<!-- including js script to initialize panel and mobile side navs -->
 <script src="../js/styles.js"></script>
