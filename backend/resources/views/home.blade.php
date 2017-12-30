@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    You are logged in! Welcome to Git
                 </div>
             </div>
         </div>
