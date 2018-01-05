@@ -13,15 +13,3 @@ use Illuminate\Http\Request;
 |
 */
 
-
-/*AUTH:API OLD
-Route::middleware('auth:api')->get('/users', function (Request $request) {
-    return $request->users();
-});
-*/
-
-/*Route to User_Database_Migration Controlle*/
-Route::get('/users', 'UsersController')->middleware('auth:api');
-
-//Route to show user's show method
-Route::get('/users/show', 'UsersController@show');
