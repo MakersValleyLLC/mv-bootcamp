@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
         'role' => "admin",
         'first_name' => "admin",
-        'last_name' => "superadmin",
+        'last_name' => "admin",
         'email' => "tech@makersvalley.net",
         'password' => "mvbootcamp,"
         /*
