@@ -48,10 +48,13 @@ public function edit($id)
 
     {    
         $user= Users::find($id);
-        $user->first_name = $request->get('first_name');
-        $user->last_name = $request->get('last_name');
-        $user->email = $request->get('email');
-        $user->save();
+        //validate the request
+         request()->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+        ]);
+        $user->update($request->all());
         return ('user updated');
     }
 

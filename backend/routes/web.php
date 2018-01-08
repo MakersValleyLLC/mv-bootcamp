@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
+
+// USERS CONTROLLERS ENDPOINTS
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
