@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Users;
-
+use Illuminate\Http\Request;
 class UsersController extends Controller
 {
 
@@ -54,7 +54,12 @@ public function edit($id)
             'last_name' => 'required',
             'email' => 'required',
         ]);
-        $user->update($request->all());
+
+         $user->first_name = $request->first_name;
+         $user->last_name = $request->last_name;
+         $user->email = $request->email;
+         $user->save();
+        
         return ('user updated');
     }
 

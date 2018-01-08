@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder
+class TestUser extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,11 +16,11 @@ class UsersTableSeeder extends Seeder
         */
 
         DB::table('users')->insert([
-        'role' => "admin",
-        'first_name' => "admin",
-        'last_name' => "admin",
-        'email' => "tech@makersvalley.net",
-        'password' => "mvbootcamp"
+        'role' => "maker",
+        'first_name' => "user",
+        'last_name' => "user",
+        'email' => "prova@mail.com",
+        'password' => "prova"
         /*
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
