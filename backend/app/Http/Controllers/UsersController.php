@@ -18,6 +18,39 @@ class UsersController extends Controller
         return Users::all();
     }
 
+
+
+    // Create a new user taking as input e-mail and password
+        public function create(Request $request)
+    {    
+        // role is maker by default
+
+        //validate email and password from the input request
+     $v = validator($request->only('email', 'password'), [
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
+
+      if ($v->fails()) {
+            return response()->json($v->errors()->all(), 400);
+        }
+        $data = request()->only('email','password');
+
+        Users::insert([
+            'role' => "maker",
+            'first_name' => null,
+            'last_name' => null,
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+
+        ]);
+
+        return ('user created');
+
+    }
+
+
+
     // Read and show the information of an User
         public function show($id)
     {
