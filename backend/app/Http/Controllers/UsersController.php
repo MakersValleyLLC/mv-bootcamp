@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Users;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 class UsersController extends Controller
 {
+	use AuthenticatesUsers;
 
    /* public function __invoke()
     {
@@ -36,14 +39,15 @@ class UsersController extends Controller
         }
         $data = request()->only('email','password');
 
-        Users::insert([
+        $input([
             'role' => "maker",
             'first_name' => null,
             'last_name' => null,
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-
         ]);
+
+        $user = Usesr::create($input);
 
         return ('user created');
 
@@ -102,5 +106,33 @@ public function edit($id)
         Users::find($id)->delete();
         return ('user deleted');
     }
+
+       public function Login(Request $request){      
+      //validate the request
+       	request()->validate([
+       		'mail' => 'required',
+       		'password' => 'required',
+       	]);
+
+       	$userdata = array($request->email,$request->password);
+
+         // attempt to do the login
+       	if (Auth::attempt($userdata)) {
+       		$user = Auth::user();
+       		$success['token'] =  $user->createToken('AccessToken')->accessToken;
+       		return response()->json(['success' => $success], $this->successStatus);
+       	}
+
+       	else {
+       		return ('LOGIN FAILED');
+     }
+
+     public function Logout(Request $request){      
+     	
+     	if (Auth::check()) {
+     		Auth::user()->AauthAcessToken()->delete();
+     		return Redirect::to('/home');
+    }
+     }
   
 }

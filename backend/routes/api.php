@@ -37,3 +37,9 @@ Route::get('/users/delete/{id}', 'UsersController@destroy');
 
 //Route to show user's updatge method
 Route::post('/users/create/user', 'UsersController@create');
+
+//Route to show user's show method
+Route::get('users/login', 'UsersController@login');
+
+//Route to show user's show method
+Route::get('users/logout', 'UsersController@logout');
