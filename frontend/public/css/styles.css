@@ -26,6 +26,15 @@
 .sidenav {
 	z-index: 9999 !important;
 }
+/*styling for the logo*/
+.logo {
+    display: inline-block;
+    height: 100%;
+}
+
+.logo>img {
+    vertical-align: middle;
+}
 
 /*stylings for the landing page*/
 .projects-div {
