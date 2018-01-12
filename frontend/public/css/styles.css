@@ -7,8 +7,14 @@
 		0 0 0 transparent !important;
 }
 
+.navbar-logo {
+	height: 50px;
+	width: 50px;
+}
+
 .bg-custom-color {
 	background: #3ab449;
+	margin: 5px;
 }
 
 .text-center {
@@ -69,6 +75,24 @@
 	height: 200px;
 	margin-left: 5%;
 	border-radius: 100%;
+}
+
+/*Stylings for the user profile page*/
+.profile-row {
+	margin-top: 40px;
+}
+
+.profile-div {
+	background: #f7f7f7;
+	padding: 10px;
+	border-radius: 5px;
+}
+.profile-icon {
+	height: 100px;
+	width: 100px;
+	border-radius: 100%;
+	background: #c0c0c0;
+	margin-left: 35%;
 }
 
 /*Styling for the 404 page*/

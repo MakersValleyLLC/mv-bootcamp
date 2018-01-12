@@ -1,0 +1,50 @@
+<!-- Navbar -->
+<nav class="custom-navbar">
+	<div class="nav-wrapper">
+		<a href="#!" class="brand-logo">
+			<img src="images/MakersValley-New-Logo.png" class="navbar-logo">
+		</a>
+		<a href="#" data-target="mobile-demo" class="sidenav-trigger button-collapse"><i class="fa fa-bars"></i></a>
+		<ul class="right hide-on-med-and-down">
+			<li><a href=""></a></li>
+		</ul>
+		<ul class="sidenav" id="mobile-demo">
+			<li><a href=""></a></li>
+		</ul>
+	</div>
+</nav>
+
+<section class="row profile-row">
+	<section class="col m4 l4"></section>
+	<section class="col m4 l4 s12">
+		
+		<section class="profile-div">
+			<h4 class="center-align">User Profile</h4>
+			<h1 class="center-align profile-icon"><i class="fa fa-user"></i></h1><br/>
+			<table>	
+				<tbody class="striped">
+					<tr>
+						<td><b>First Name</b></td>
+						<td>{{ user.firstName }}</td>
+					</tr>
+
+					<tr>
+						<td><b>Last Name</b></td>
+						<td>{{ user.lastName }}</td>
+					</tr>
+
+					<tr>
+						<td><b>Email Address</b></td>
+						<td>{{ user.email }}</td>
+					</tr>
+
+					<tr>
+						<td><b>User Type</b></td>
+						<td>{{ user.type }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</section>
+	<section class="col m4 l4"></section>
+</section>

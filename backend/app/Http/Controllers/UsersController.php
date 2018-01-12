@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Users;
-
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 class UsersController extends Controller
 {
+	use AuthenticatesUsers;
 
    /* public function __invoke()
     {
@@ -17,6 +20,40 @@ class UsersController extends Controller
     {
         return Users::all();
     }
+
+
+
+    // Create a new user taking as input e-mail and password
+        public function create(Request $request)
+    {    
+        // role is maker by default
+
+        //validate email and password from the input request
+     $v = validator($request->only('email', 'password'), [
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
+
+      if ($v->fails()) {
+            return response()->json($v->errors()->all(), 400);
+        }
+        $data = request()->only('email','password');
+
+        $input([
+            'role' => "maker",
+            'first_name' => null,
+            'last_name' => null,
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+
+        $user = Usesr::create($input);
+
+        return ('user created');
+
+    }
+
+
 
     // Read and show the information of an User
         public function show($id)
@@ -48,10 +85,18 @@ public function edit($id)
 
     {    
         $user= Users::find($id);
-        $user->first_name = $request->get('first_name');
-        $user->last_name = $request->get('last_name');
-        $user->email = $request->get('email');
-        $user->save();
+        //validate the request
+         request()->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+        ]);
+
+         $user->first_name = $request->first_name;
+         $user->last_name = $request->last_name;
+         $user->email = $request->email;
+         $user->save();
+        
         return ('user updated');
     }
 
@@ -61,5 +106,33 @@ public function edit($id)
         Users::find($id)->delete();
         return ('user deleted');
     }
+
+       public function Login(Request $request){      
+      //validate the request
+       	request()->validate([
+       		'mail' => 'required',
+       		'password' => 'required',
+       	]);
+
+       	$userdata = array($request->email,$request->password);
+
+         // attempt to do the login
+       	if (Auth::attempt($userdata)) {
+       		$user = Auth::user();
+       		$success['token'] =  $user->createToken('AccessToken')->accessToken;
+       		return response()->json(['success' => $success], $this->successStatus);
+       	}
+
+       	else {
+       		return ('LOGIN FAILED');
+     }
+
+     public function Logout(Request $request){      
+     	
+     	if (Auth::check()) {
+     		Auth::user()->AauthAcessToken()->delete();
+     		return Redirect::to('/home');
+    }
+     }
   
 }
