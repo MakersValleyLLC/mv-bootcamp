@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign up page</title>
+	<style type="text/css">
+	#para1 {
+    text-align: center;
+    color:lime;
+    }
+
+    img {
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    }
+   
+   .loginbtn{
+	background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    left: 1370px;
+    top: 45px;
+
+    cursor: pointer;
+	
+    }
+
+    .signupbtn, .cancelbtn{
+	background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+	
+    }
+
+  input[type=text]:focus {
+    border: 2px solid #4da6ff;
+   }
+
+   input[type=email]:focus {
+    border: 2px solid #4da6ff;
+   }
+
+   input[type=password]:focus {
+    border: 2px solid #4da6ff;
+   }
+
+   input:hover {
+    border-color: #778899;
+   }
+
+  .contactinfo{
+   background-color: #2F4F4F;
+   height: 190px;
+   }
+
+   #last {
+	color:white;
+	font-size: 18px;
+	text-indent: 90px; 
+   }
+
+   h2{
+	text-indent: 90px;
+	color: white;
+   }
+
+   .center {
+	 text-align: center;
+	 font-size: 20px;
+    }
+
+    .container {
+    background-color: lightgrey;
+    height: 390px;
+    width: 420px;
+    margin-top: 5px;
+    margin-left: 570px;
+    padding-top: 35px;
+    
+    
+    }
+
+    .one{
+    position: absolute;
+    top: 305px;
+    left: 620px;
+    }
+
+      .two{
+    position: absolute;
+    top: 375px;
+    left: 620px;
+    }
+
+      .three{
+    position: absolute;
+    top: 445px;
+    left: 620px;
+    }
+
+
+      .four{
+    position: absolute;
+    top: 515px;
+    left: 620px;
+    }
+
+
+
+	</style>
+</head>
+<body>
+<img src="./images/makersvalley_logo.png">
+	<button class="loginbtn">Login</button>
+	<br>
+	<br>
+    <h1 id="para1">Sign Up</h1>
+    <p class="center">Enter the information below to create your account </p>
+    <form action="" class="center" >
+    <div class="container" >	
+    <label for="first name" class="one" ><b> Name </b></label>
+    <br>
+	<input id="first name" type="text" placeholder="Firstname" name="firstname" required>
+	<input id="last name" type="text" placeholder="Lastname" name="lastname" required>
+	<br>
+	<br>
+	<label for="email" class="two" ><b> Email </b></label>
+    <br>
+	<input id= "email" type="email" name="e-mail" size="46" placeholder="your email" required>
+	<br>
+	<br>
+	<label for="passwd" class="three" ><b> Password </b></label>
+    <br>
+	<input id= "passwd" type="password" name="password" size="46" pattern=".{5,10}" required title="between 5 and 10 characters">
+	<br>
+	<br>
+	<label for="confirmpasswd" class="four" ><b> Confirm Password </b></label>
+    <br>
+	<input id= "confmpasswd" type="password" size="46" name="cpassword">
+	
+	<p>
+	<input id="agree" type="checkbox" name="check">
+	I agree to the <a href="#" style="color:dodgerblue"> terms and conditions </a>.
+    </p>
+    
+   <button class="signupbtn" type="submit">Sign up</button>
+   <button class="cancelbtn">Cancel</button>
+    </div>
+    </form>
+   
+    <br>
+    <br>
+    <br>
+    <div class="contactinfo">
+    	<br>
+    	<h2> Connect </h2>
+    	<p id="last">hello@makersvalley.net </p>
+        <br>
+        <p id="last">&copy; 2018 Copyright </p>
+   
+    </div>
+    <br>
+    <br>
+</body>
+</html>
