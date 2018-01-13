@@ -12,5 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.home');
 });
+
+//TEST
+Route::get('/test', function () {
+    return view('test.test');
+});
+
+// USERS CONTROLLERS ENDPOINTS
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+

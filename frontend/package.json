@@ -1,0 +1,22 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "frontend package mvbootcamp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makersvalley/mv-bootcamp.git"
+  },
+  "author": "jideokus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/makersvalley/mv-bootcamp/issues"
+  },
+  "homepage": "https://github.com/makersvalley/mv-bootcamp#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
