@@ -39,7 +39,7 @@ class UsersController extends Controller
         }
         $data = request()->only('email','password');
 
-        $input([
+        $input = ([
             'role' => "maker",
             'first_name' => null,
             'last_name' => null,
@@ -47,7 +47,7 @@ class UsersController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        $user = Usesr::create($input);
+        $user = Users::create($input);
 
         return ('user created');
 
@@ -107,32 +107,60 @@ public function edit($id)
         return ('user deleted');
     }
 
-       public function Login(Request $request){      
+    public function login(Request $request){      
       //validate the request
-       	request()->validate([
-       		'mail' => 'required',
-       		'password' => 'required',
-       	]);
+        request()->validate([
+           'email' => 'required',
+           'password' => 'required',
+       ]);
 
-       	$userdata = array($request->email,$request->password);
+        $user = Users::find($request->email);
 
-         // attempt to do the login
-       	if (Auth::attempt($userdata)) {
-       		$user = Auth::user();
-       		$success['token'] =  $user->createToken('AccessToken')->accessToken;
-       		return response()->json(['success' => $success], $this->successStatus);
-       	}
+        $request->request->add([
+            'grant_type'    => 'password',
+            'client_id'     =>  0,
+            'client_secret' => null,
+            'username'      => $request->email,
+            'password'      => $request->password,
+            'scope'         => null,
+        ]);
 
-       	else {
-       		return ('LOGIN FAILED');
+                $proxy = Request::create(
+            'oauth/token',
+            'POST'
+        );
+
+                return $proxy;
+
+
+
+   }
+
+   protected function guard()
+{
+    return Auth::guard('api');
+}
+
+     public function logout(Request $request){      
+$request->user()->token()->revoke();
+
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        $json = [
+            'success' => true,
+            'code' => 200,
+            'message' => 'You are Logged out.',
+        ];
+        return $json;
      }
+     
+     
 
-     public function Logout(Request $request){      
-     	
-     	if (Auth::check()) {
-     		Auth::user()->AauthAcessToken()->delete();
-     		return Redirect::to('/home');
-    }
-     }
+
+
   
 }
