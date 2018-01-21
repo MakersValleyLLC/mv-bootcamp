@@ -23,6 +23,9 @@ Route::middleware('auth:api')->get('/users', function (Request $request) {
 });
 
 
+Route::post('login', 'ApiLoginController@login');
+
+
 //Route to show user's show method
 Route::get('users/show/{id}', 'UsersController@show');
 

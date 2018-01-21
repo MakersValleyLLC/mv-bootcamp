@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Users;
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\AuthenticatesUser;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 class UsersController extends Controller
 {
-	use AuthenticatesUsers;
+	use AuthenticatesUser;
 
    /* public function __invoke()
     {
@@ -16,151 +18,159 @@ class UsersController extends Controller
     }
     */
 
-        public function index()
+    public function index()
     {
-        return Users::all();
+        return User::all();
     }
 
 
 
-    // Create a new user taking as input e-mail and password
-        public function create(Request $request)
+    // Create a new user taking as input e-mail and password 
+    public function create(Request $request)
     {    
         // role is maker by default
 
         //validate email and password from the input request
-     $v = validator($request->only('email', 'password'), [
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
+     $v = validator($request->only('first_name','last_name','email', 'password'), [
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6',
+    ]);
 
-      if ($v->fails()) {
-            return response()->json($v->errors()->all(), 400);
-        }
-        $data = request()->only('email','password');
-
-        $input = ([
-            'role' => "maker",
-            'first_name' => null,
-            'last_name' => null,
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-
-        $user = Users::create($input);
-
-        return ('user created');
-
+     if ($v->fails()) {
+        return response()->json($v->errors()->all(), 400);
     }
+    $data = request()->only('first_name','last_name','email','password');
+
+    $input = ([
+        'role' => "maker",
+        'first_name' => $data['first_name'],
+        'last_name' => $data['last_name'],
+        'email' => $data['email'],
+        'password' => bcrypt($data['password']),
+    ]);
+
+    $user = User::create($input);
+
+    return ('user created');
+
+}
 
 
 
     // Read and show the information of an User
-        public function show($id)
-    {
-      // get the user
-        $user = Users::find($id);
-        if ($user== NULL) 
-        { 
-            $user="not found";
-        }
-          
-     // show the view and pass the user to it
-        return $user; 
-    }
-
-
-public function edit($id)
-    {
-        // et the id of the user to update
-        $user = Users::find($id);
-
-        // show the edit form and pass the nerd
-        return View::make('users.edit')
-            ->with('users', $user);
-    }
-
-
-    public function update(Request $request, $id)
-
-    {    
-        $user= Users::find($id);
-        //validate the request
-         request()->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-        ]);
-
-         $user->first_name = $request->first_name;
-         $user->last_name = $request->last_name;
-         $user->email = $request->email;
-         $user->save();
-        
-        return ('user updated');
-    }
-
-        public function destroy($id)
-
-    {
-        Users::find($id)->delete();
-        return ('user deleted');
-    }
-
-    public function login(Request $request){      
-      //validate the request
-        request()->validate([
-           'email' => 'required',
-           'password' => 'required',
-       ]);
-
-        $user = Users::find($request->email);
-
-        $request->request->add([
-            'grant_type'    => 'password',
-            'client_id'     =>  0,
-            'client_secret' => null,
-            'username'      => $request->email,
-            'password'      => $request->password,
-            'scope'         => null,
-        ]);
-
-                $proxy = Request::create(
-            'oauth/token',
-            'POST'
-        );
-
-                return $proxy;
-
-
-
-   }
-
-   protected function guard()
+public function show($id)
 {
-    return Auth::guard('api');
+      // get the user
+    $user = User::find($id);
+    if ($user== NULL) 
+    { 
+        return(" ID not found");
+    }
+
+     // show the view and pass the user to it
+    return $user; 
 }
 
-     public function logout(Request $request){      
-$request->user()->token()->revoke();
 
-        $this->guard()->logout();
+public function update(Request $request, $id)
 
-        $request->session()->flush();
+{    
+    $user= User::find($id);
+    if ($user== NULL) 
+    { 
+        return(" ID not found");
+    }
+        //validate the request
+     $v = validator($request->only('first_name','last_name','email'), [
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255',
+    ]);
 
-        $request->session()->regenerate();
+     if ($v->fails()) {
+        return response()->json($v->errors()->all(), 400);
+    }
 
-        $json = [
-            'success' => true,
-            'code' => 200,
-            'message' => 'You are Logged out.',
-        ];
-        return $json;
-     }
-     
-     
+    $user->first_name = $request->first_name;
+    $user->last_name = $request->last_name;
+    $user->email = $request->email;
+    $user->save();
 
-
-
-  
+    return ('user updated');
 }
+
+public function destroy($id)
+
+{
+     $user= User::find($id);
+    if ($user== NULL) 
+    { 
+        return(" ID not found");
+    }
+    else{
+    $user->delete();
+    return ('user deleted');
+    }
+}
+
+public function login(Request $request){     
+
+    $http = new Client(); //GuzzleHttp\Client
+
+
+      //validate the request
+     $v = validator($request->only('email','password'), [
+        'email' => 'required',
+        'password' => 'required',
+    ]);
+
+     if ($v->fails()) {
+        return response()->json($v->errors()->all(), 400);
+    }
+
+        $user = User::where("email",$request->email)->get()->first(); 
+
+          if ($user== NULL) 
+    { 
+        return(" e-mail not registered");
+    }
+
+$response = $http->post('bootcamp.mv/oauth/token', [
+    'form_params' => [
+        'grant_type' => 'password',
+        'client_id' => $user->id,
+        'client_secret' => '',
+        'username' => $request->mail,
+        'password' => $request->password,
+        'scope' => '',
+    ],
+]);
+
+   $token= json_decode((string) $response->getBody(), true); 
+
+
+
+                return array($response, $user);
+                 // send the token back and test the token
+                // I should give user information to FE user information first name , last name, id, and e-mail
+
+
+
+            }
+
+            protected function guard()
+            {
+                return Auth::guard('api');
+            }
+
+
+      //I can receive the token from the FE and destroy it.
+            public function logout(Request $request){      
+                $request->user()->token()->revoke();
+
+     // destroy the token received and send a message.
+            }
+
+        }
