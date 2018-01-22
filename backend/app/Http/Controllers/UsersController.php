@@ -137,13 +137,13 @@ public function login(Request $request){
         return(" e-mail not registered");
     }
 
-$response = $http->post('bootcamp.mv/oauth/token', [
+$response = $http->post('http://bootcamp.mv/oauth/token', [
     'form_params' => [
         'grant_type' => 'password',
-        'client_id' => 1,
+        'client_id' => '1',
         'client_secret' => 'Xezd0i9SS9Vitl9d5vDnopsfLQkb1KQYCRNerJiq',
-        'username' => $request->mail,
-        'password' => $request->password,
+        'username' => $request['email'],
+        'password' => $request['password'],
         'scope' => '*',
     ],
 ]);
@@ -152,7 +152,7 @@ $response = $http->post('bootcamp.mv/oauth/token', [
 
 
 
-                return array($response, $user);
+                return array($token, $user);
                  // send the token back and test the token
                 // I should give user information to FE user information first name , last name, id, and e-mail
 
