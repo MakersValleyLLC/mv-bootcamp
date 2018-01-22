@@ -125,20 +125,22 @@ public function edit($id)
 
        	else {
        		return ('LOGIN FAILED');
-     }
+        }
 
+    }
+     
      public function Logout(Request $request){
 
-     	if (Auth::check()) {
-     		Auth::user()->AauthAcessToken()->delete();
-     		return Redirect::to('/home');
+        if (Auth::check()) {
+            Auth::user()->AauthAcessToken()->delete();
+            return Redirect::to('/home');
+        }
     }
-     }
 
-		 // public function TestEmail(Request $request){
-			//  $data = ['message' => 'This is a test!'];
-     //
-    	//  Mail::to('mykooll.ohaegbu@gmail.com')->send(new \App\Mail\TestEmail($data));
-		 // 		}
+		 public function TestEmail(Request $request){
+			 $data = ['message' => 'This is a test!'];
+     
+    	 Mail::to('mykooll.ohaegbu@gmail.com')->send(new \App\Mail\TestEmail($data));
+		 		}
 
 }
