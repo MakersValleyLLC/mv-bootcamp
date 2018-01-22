@@ -23,6 +23,9 @@ Route::middleware('auth:api')->get('/users', function (Request $request) {
 });
 
 
+Route::post('login', 'ApiLoginController@login');
+
+
 //Route to show user's show method
 Route::get('users/show/{id}', 'UsersController@show');
 
@@ -32,14 +35,14 @@ Route::get('/users/edit', 'UsersController@edit');
 //Route to show user's update method
 Route::put('/users/update/{id}', 'UsersController@update');
 
-//Route to show user's updatge method
+//Route to show user's delete method
 Route::get('/users/delete/{id}', 'UsersController@destroy');
 
-//Route to show user's updatge method
+//Route to create a user
 Route::post('/users/create/user', 'UsersController@create');
 
-//Route to show user's show method
-Route::get('users/login', 'UsersController@login');
+//Route to log in
+Route::post('users/login', 'UsersController@login');
 
-//Route to show user's show method
+//Route to logout
 Route::get('users/logout', 'UsersController@logout');
