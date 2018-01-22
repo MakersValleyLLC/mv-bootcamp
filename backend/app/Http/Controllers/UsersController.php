@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use DB;
+use Lcobucci\JWT\Parser;
 class UsersController extends Controller
 {
 	use AuthenticatesUsers;
@@ -31,14 +34,14 @@ class UsersController extends Controller
         // role is maker by default
 
         //validate email and password from the input request
-     $v = validator($request->only('first_name','last_name','email', 'password'), [
+       $v = validator($request->only('first_name','last_name','email', 'password'), [
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:6',
     ]);
 
-     if ($v->fails()) {
+       if ($v->fails()) {
         return response()->json($v->errors()->all(), 400);
     }
     $data = request()->only('first_name','last_name','email','password');
@@ -58,40 +61,57 @@ class UsersController extends Controller
 }
 
 
+// Helper function to check if the user is authenticated
+// get an AccessToken use the Middleware Auth to receive the User Info 
+public function checkUser (String $token){
 
-    // Read and show the information of an User
-public function show($id)
-{
-      // get the user
-    $user = User::find($id);
-    if ($user== NULL) 
-    { 
-        return(" ID not found");
+       $client = new Client(); //GuzzleHttp\Client
+
+       $user_auth = $client->get('http://bootcamp.mv/api/user', [
+        'headers' => [
+            'Authorization' => 'Bearer '.$token,
+        ],
+    ]);
+        $user = json_decode((string) $user_auth->getBody(), true);
+
+       if ($user == NULL) 
+       { 
+        return("NOT ALLOWED");
     }
 
-     // show the view and pass the user to it
-    return $user; 
+    else{    
+ 
+        return $user;
+    }
 }
 
 
-public function update(Request $request, $id)
+
+    // Read and show the information of an User
+public function show(Request $request)
+{
+   $user = $this->checkUser($request->token);
+   return $user;
+
+}
+
+
+public function update(Request $request)
 
 {    
-    $user= User::find($id);
-    if ($user== NULL) 
-    { 
-        return(" ID not found");
-    }
         //validate the request
-     $v = validator($request->only('first_name','last_name','email'), [
+    $v = validator($request->only('first_name','last_name','email'), [
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255',
     ]);
 
-     if ($v->fails()) {
+    if ($v->fails()) {
         return response()->json($v->errors()->all(), 400);
     }
+
+    $user_auth=$this->CheckUser($request->token);
+    $user= User::find($user_auth['id']);
 
     $user->first_name = $request->first_name;
     $user->last_name = $request->last_name;
@@ -101,18 +121,13 @@ public function update(Request $request, $id)
     return ('user updated');
 }
 
-public function destroy($id)
+public function destroy(Request $request)
 
 {
-     $user= User::find($id);
-    if ($user== NULL) 
-    { 
-        return(" ID not found");
-    }
-    else{
+    $user_auth=$this->CheckUser($request->token);
+    $user= User::find($user_auth['id']);
     $user->delete();
     return ('user deleted');
-    }
 }
 
 public function login(Request $request){     
@@ -121,56 +136,64 @@ public function login(Request $request){
 
 
       //validate the request
-     $v = validator($request->only('email','password'), [
+    $v = validator($request->only('email','password'), [
         'email' => 'required',
         'password' => 'required',
     ]);
 
-     if ($v->fails()) {
+    if ($v->fails()) {
         return response()->json($v->errors()->all(), 400);
     }
 
-        $user = User::where("email",$request->email)->get()->first(); 
+    $user = User::where("email",$request->email)->get()->first(); 
 
-          if ($user== NULL) 
+    if ($user== NULL) 
     { 
         return(" e-mail not registered");
     }
 
-$response = $http->post('http://bootcamp.mv/oauth/token', [
-    'form_params' => [
-        'grant_type' => 'password',
-        'client_id' => '1',
-        'client_secret' => 'Xezd0i9SS9Vitl9d5vDnopsfLQkb1KQYCRNerJiq',
-        'username' => $request['email'],
-        'password' => $request['password'],
-        'scope' => '*',
-    ],
-]);
+    $response = $http->post('http://bootcamp.mv/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'password',
+            'client_id' => '1',
+            'client_secret' => 'FZERayp9GckJlkNk7pWX8etDMvyexSLAH2cGn0sF',
+            'username' => $request['email'],
+            'password' => $request['password'],
+            'scope' => '*',
+        ],
+    ]);
 
     $token= json_decode((string) $response->getBody(), true); 
 
 
 
-                return array($token, $user);
+    return array($token, $user);
                  // send the token back and test the token
                 // I should give user information to FE user information first name , last name, id, and e-mail
 
 
 
-            }
-
-            protected function guard()
-            {
-                return Auth::guard('api');
-            }
+}
 
 
       //I can receive the token from the FE and destroy it.
-            public function logout(Request $request){      
-                $request->user()->token()->revoke();
+public function logout(Request $request){
 
-     // destroy the token received and send a message.
-            }
+    $id = (new Parser())->parse($request->token)->getHeader('jti');
+    $revoked = DB::table('oauth_access_tokens')->where('id', '=', $id)->update(['revoked' => 1]);
+    Auth::logout();
 
-        }
+             $json = [
+            'success' => true,
+            'code' => 200,
+            'message' => 'Logged Out',
+        ];
+        return response()->json($json, '200');
+}
+
+protected function guard()
+{
+    return Auth::guard('api');
+}
+
+}

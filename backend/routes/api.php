@@ -18,8 +18,8 @@ Route::resource('users', 'UsersController');
 
 
 //This Middleware protects the DB of users asking for permission to request the users
-Route::middleware('auth:api')->get('/users', function (Request $request) {
-    return $request->users();
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
 });
 
 
@@ -27,16 +27,13 @@ Route::post('login', 'ApiLoginController@login');
 
 
 //Route to show user's show method
-Route::get('users/show/{id}', 'UsersController@show');
-
-//Route to show user's updatge method
-Route::get('/users/edit', 'UsersController@edit');
+Route::post('users/show', 'UsersController@show');
 
 //Route to show user's update method
-Route::put('/users/update/{id}', 'UsersController@update');
+Route::put('/users/update', 'UsersController@update');
 
 //Route to show user's delete method
-Route::get('/users/delete/{id}', 'UsersController@destroy');
+Route::post('/users/delete', 'UsersController@destroy');
 
 //Route to create a user
 Route::post('/users/create/user', 'UsersController@create');
@@ -45,4 +42,4 @@ Route::post('/users/create/user', 'UsersController@create');
 Route::post('users/login', 'UsersController@login');
 
 //Route to logout
-Route::get('users/logout', 'UsersController@logout');
+Route::post('users/logout', 'UsersController@logout');

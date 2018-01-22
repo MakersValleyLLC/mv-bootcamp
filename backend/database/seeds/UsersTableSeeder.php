@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         'first_name' => "admin",
         'last_name' => "admin",
         'email' => "tech@makersvalley.net",
-        'password' => "mvbootcamp"
+        'password' => bcrypt("mvbootcamp")
         /*
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
