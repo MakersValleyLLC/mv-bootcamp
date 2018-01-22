@@ -196,4 +196,9 @@ protected function guard()
     return Auth::guard('api');
 }
 
+public function TestEmail(Request $request){
+             $data = ['message' => 'This is a test!'];
+     
+         Mail::to('mykooll.ohaegbu@gmail.com')->send(new \App\Mail\TestEmail($data));
+
 }

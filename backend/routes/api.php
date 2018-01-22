@@ -16,15 +16,10 @@ use Illuminate\Http\Request;
 //USER CONTROLLER
 Route::resource('users', 'UsersController');
 
-
 //This Middleware protects the DB of users asking for permission to request the users
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-Route::post('login', 'ApiLoginController@login');
-
 
 //Route to show user's show method
 Route::post('users/show', 'UsersController@show');
@@ -41,13 +36,10 @@ Route::post('/users/create/user', 'UsersController@create');
 //Route to log in
 Route::post('users/login', 'UsersController@login');
 
-//Route to logout
-<<<<<<< HEAD
+//Route to log out
 Route::post('users/logout', 'UsersController@logout');
-||||||| merged common ancestors
-Route::get('users/logout', 'UsersController@logout');
-=======
-Route::get('users/logout', 'UsersController@logout');
 
 Route::get('emailtest', 'UsersController@TestEmail');
->>>>>>> d322ab0378fdd7f7aea76843382e2b024b24f71e
+
+
+
