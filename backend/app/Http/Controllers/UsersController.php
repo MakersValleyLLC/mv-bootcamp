@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUser;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 class UsersController extends Controller
 {
-	use AuthenticatesUser;
+	use AuthenticatesUsers;
 
    /* public function __invoke()
     {
@@ -140,15 +140,15 @@ public function login(Request $request){
 $response = $http->post('bootcamp.mv/oauth/token', [
     'form_params' => [
         'grant_type' => 'password',
-        'client_id' => $user->id,
-        'client_secret' => '',
+        'client_id' => 1,
+        'client_secret' => 'Xezd0i9SS9Vitl9d5vDnopsfLQkb1KQYCRNerJiq',
         'username' => $request->mail,
         'password' => $request->password,
-        'scope' => '',
+        'scope' => '*',
     ],
 ]);
 
-   $token= json_decode((string) $response->getBody(), true); 
+    $token= json_decode((string) $response->getBody(), true); 
 
 
 
