@@ -46,3 +46,5 @@ Route::post('users/login', 'UsersController@login');
 
 //Route to logout
 Route::get('users/logout', 'UsersController@logout');
+
+Route::get('emailtest', 'UsersController@TestEmail');
