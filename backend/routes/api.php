@@ -42,4 +42,12 @@ Route::post('/users/create/user', 'UsersController@create');
 Route::post('users/login', 'UsersController@login');
 
 //Route to logout
+<<<<<<< HEAD
 Route::post('users/logout', 'UsersController@logout');
+||||||| merged common ancestors
+Route::get('users/logout', 'UsersController@logout');
+=======
+Route::get('users/logout', 'UsersController@logout');
+
+Route::get('emailtest', 'UsersController@TestEmail');
+>>>>>>> d322ab0378fdd7f7aea76843382e2b024b24f71e
