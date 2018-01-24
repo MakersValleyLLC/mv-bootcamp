@@ -6,12 +6,65 @@
 		</a>
 		<a href="#" data-target="mobile-demo" class="sidenav-trigger button-collapse"><i class="fa fa-bars"></i></a>
 		<ul class="right hide-on-med-and-down">
-			<li><a href=""></a></li>
+			<li><a href="">Home</a></li>
+			<li><a ng-click="openUserInviteModal()">Invite User</a></li>
+			<li><a href="">Logout</a></li>
 		</ul>
 		<ul class="sidenav" id="mobile-demo">
-			<li><a href=""></a></li>
+			<li><a href="">Home</a></li>
+			<li><a ng-click="openUserInviteModal()">Invite User</a></li>
+			<li><a href="">Logout</a></li>
 		</ul>
 	</div>
 </nav>
+
+<section class="row" ng-cloak>
+	<section class="col m2 l2"></section>
+	<section class="col s12 m8 l8">
+		<h4 class="center-align">Registered Users</h4>
+		<table class="bordered highlight responsive-table">
+	        <thead>
+	          <tr>
+	              <th>First Name</th>
+	              <th>Last Name</th>
+	              <th>Email Address</th>
+	              <th>User Type</th>
+	              <th>Actions</th>
+	          </tr>
+	        </thead>
+
+	        <tbody>
+		        <tr ng-repeat="user in users">
+		            <td>{{user.firstName}}</td>
+		            <td>{{user.lastName}}</td>
+		            <td>{{user.email}}</td>
+		            <td>{{user.userType}}</td>
+		            <td>
+		            	<button type="button" class="btn indigo accent-2" ng-click="viewUserProfile(user.userId)"><i class="fa fa-eye"></i> Profile</button>
+		            	<button type="button" class="btn red accent-2" ng-click="deleteUser(user.userId)"><i class="fa fa-trash-o"></i> Delete</button>
+		            </td>
+		        </tr>
+	        </tbody>
+	    </table>
+	</section>
+	<section class="col m2 l2"></section>
+</section>
+
+<!-- User Invitation -->
+<section id="modal1" class="modal user-invite-modal">
+    <section class="modal-content">
+      	<h4>Invite User</h4>
+      	<form class="user-invite-form" enctype="multipart/form-data" method="post" ng-submit="inviteUser()">
+      		<section class="row">
+		        <section class="input-field col s12">
+		          	<input id="email" type="email" class="validate user-invite-email" ng-model="inviteeEmail" required>
+		          	<label for="email">Invitee Email Address</label>
+		        </section>
+		    </section>
+		    <button type="submit" class="btn green">Invite</button>
+		    <button type="button" class="btn orange accent-2 modal-action modal-close waves-effect waves-green">Cancel</button>
+      	</form>
+    </section>
+</section>
 
 
