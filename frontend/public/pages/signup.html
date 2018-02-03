@@ -113,7 +113,29 @@ button:hover {
 	<br>
 	<br>
 	<label for="email" class="two" ><b> Email </b></label>	
+	<br>
+	<input id= "email" type="email" name="e-mail" size="46" placeholder="your email" required>
+	<br>
+	<br>
+	<label for="passwd" class="three" ><b> Password </b></label>
+    <br>
+	<input id= "passwd" type="password" name="password" size="46" pattern=".{5,10}" required title="between 5 and 10 characters">
+	<br>
+	<br>
+	<label for="confirmpasswd" class="four" ><b> Confirm Password </b></label>
+    <br>
+	<input id= "confmpasswd" type="password" size="46" name="cpassword">
 	
+	<p style="font-size:90%;">
+	<input id="agree" type="checkbox" name="check">
+	I agree to the <a href="#" style="color:dodgerblue"> terms and conditions </a>.
+    </p>
+   
+   <button class="signupbtn" type="submit">Sign up</button>
+   <button class="cancelbtn">Cancel</button>
+
+    </div>
+    </form>
 
     <br>
     <br>
