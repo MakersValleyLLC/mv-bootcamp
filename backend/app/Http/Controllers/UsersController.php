@@ -11,6 +11,8 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use DB;
 use Lcobucci\JWT\Parser;
+use Mail;
+
 class UsersController extends Controller
 {
     use AuthenticatesUsers;
@@ -160,9 +162,18 @@ protected function guard()
     return Auth::guard('api');
 }
 
-public function TestEmail(Request $request){
+public function invitemail(Request $request){
    $data = ['message' => 'This is a test!'];
-   Mail::to('mykooll.ohaegbu@gmail.com')->send(new \App\Mail\TestEmail($data));
+   Mail::to('casabiancadenny@gmail.com')->send(new \App\Mail\TestEmail($data));
+    return(" e-mail sent");
 }
+
+private function signupmail(Request $request){
+   $data = ['message' => 'This is a test!'];
+   Mail::to('$request->mail')->send(new T\App\Mail\TestEmail($data));
+}
+
+
+
 
 }

@@ -30,6 +30,6 @@ class TestEmail extends Mailable
                   ->bcc($address, $name)
                   ->replyTo($address, $name)
                   ->subject($subject)
-                  ->with([ 'message' => $data['message'] ]);
+                  ->with([ 'message' => ["message"] ]);
   }
 }
