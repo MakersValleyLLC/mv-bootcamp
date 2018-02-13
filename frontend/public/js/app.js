@@ -10,6 +10,10 @@ app.config(function($routeProvider) {
 		templateUrl: "pages/login.html",
 		controller: "loginCtrl"
 	})
+	.when("/forgotpassword", {
+		templateUrl: "pages/forgotpassword.html",
+		controller: "forgotCtrl"
+	})
 	.when("/signup", {
 		templateUrl: "pages/signup.html",
 		controller: "signupCtrl"
