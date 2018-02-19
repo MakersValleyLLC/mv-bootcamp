@@ -90,6 +90,15 @@
     top:490px;
     left:612px;
    }	
+
+
+   #confmpasswd {
+    width:21%;
+    height: 18px; 
+    position: absolute;
+    top:565px;
+    left:612px;
+   }
 		
 .contactinfo{
    background-color: #2F4F4F;
@@ -187,6 +196,14 @@
     top: 457px;
     left: 620px;
     }
+
+      .four{
+    font-size: 20px;
+    color: black; 
+    position: absolute;
+    top: 529px;
+    left: 620px;
+    }
 	
 
 </style>	
@@ -215,6 +232,12 @@
         <br>
 	<input id= "passwd" type="password" name="password" size="46" pattern=".{6,}" required title="6 characters minimum">
 	<div id="error-length"></div>
+        <br>
+	<br>
+	<label for="confirmpasswd" class="four" ><b> Confirm Password </b></label>
+        <br>
+	<input id= "confmpasswd" type="password" size="46" name="cpassword" onkeyup="checkPass(); return false;">
+	<div id="error-nwl"></div>
 
 	
 	
