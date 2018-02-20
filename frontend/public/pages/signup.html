@@ -6,24 +6,69 @@
 		</a>
 		<a href="#" data-target="mobile-demo" class="sidenav-trigger button-collapse"><i class="fa fa-bars"></i></a>
 		<ul class="right hide-on-med-and-down">
-			<li><a href=""></a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#login">Login</a></li>
 		</ul>
 		<ul class="sidenav" id="mobile-demo">
-			<li><a href=""></a></li>
+            <li><a href="#">Home</a></li>
+			<li><a href="#login">Login</a></li>
 		</ul>
 	</div>
 </nav>
 
-<!DOCTYPE html>
+<div class="row">
+    <div class="col l4"></div>
+    <div class="col l4 user-form">
+        <h5 class="center-align">Sign Up On MakersValley</h5><br>
+        <form enctype="multipart/form-data" method="post" ng-submit="signupUser()">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="fname" type="text" class="validate" ng-model="singup.fname" required>
+                    <label for="fname">First Name</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <input id="lname" type="text" class="validate" ng-model="signup.lname" required>
+                    <label for="lname">Last Name</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate" ng-model="signup.email" required>
+                    <label for="email">Email Address</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate" ng-model="signup.password" required>
+                    <label for="password">Password</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <button type="submit" class="waves-effect waves-light btn custom-btn">Sign Up</button>
+                </div>
+
+                <div class="col s12">
+                    <a href="#login" title="">Already Have An Account? Login</a>
+                </div><br><br>
+                
+                <div class="col s12">
+                    <p>{{resMsg}}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col l4"></div>
+</div>
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> -->
 <!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<!-- <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-	<title>Sign up page</title>
+	<title>Sign up page</title> -->
 
-<style type="text/css">
+<!-- <style type="text/css">
 	
    a:link {
     text-decoration: underline;
@@ -237,8 +282,8 @@ input[type="checkbox"] {
     }
 	
 
-</style>	
-</head>	
+</style> -->	
+<!-- </head>	
 
 <body>
 <button class="loginbtn">Login</button>
@@ -297,4 +342,4 @@ input[type="checkbox"] {
     <br>
     <br>	
 </body>
-</html>
+</html> -->

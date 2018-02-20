@@ -1,242 +1,246 @@
 <!-- Navbar -->
 <nav class="custom-navbar">
-	<div class="nav-wrapper">
-		<a href="#!" class="brand-logo">
-			<img src="images/MakersValley-New-Logo.png" class="navbar-logo">
-		</a>
-		<a href="#" data-target="mobile-demo" class="sidenav-trigger button-collapse"><i class="fa fa-bars"></i></a>
-		<ul class="right hide-on-med-and-down">
-			<li><a href=""></a></li>
-		</ul>
-		<ul class="sidenav" id="mobile-demo">
-			<li><a href=""></a></li>
-		</ul>
-	</div>
+    <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">
+            <img src="images/MakersValley-New-Logo.png" class="navbar-logo">
+        </a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger button-collapse"><i class="fa fa-bars"></i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#">Home</a></li>
+            <li><a href="#signup">Signup</a></li>
+        </ul>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="#">Home</a></li>
+            <li><a href="#signup">Signup</a></li>
+        </ul>
+    </div>
 </nav>
 
+<div class="row">
+    <div class="col l4"></div>
+    <div class="col l4 user-form">
+        <h5 class="center-align">Login To MakersValley</h5><br>
+        <form enctype="multipart/form-data" method="post" ng-submit="loginUser()">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate" ng-model="login.email" required>
+                    <label for="email">Email Address</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate" ng-model="login.password" required>
+                    <label for="password">Password</label>
+                </div>
 
-<!DOCTYPE html>
+                <div class="col s12">
+                    <a href="#forgotpassword" title="">I Forgot My Password</a><br>
+                </div>
+
+                <div class="input-field col s12">
+                    <button type="submit" class="waves-effect waves-light btn custom-btn">Login</button>
+                </div>
+
+                <div class="col s12">
+                    <a href="#signup" title="">Don't Have An Account? Sign Up</a>
+                </div><br><br>
+                
+                <div class="col s12">
+                    <p>{{resMsg}}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col l4"></div>
+</div>
+<!-- <!DOCTYPE html>
 <html>
-<head>
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
-	<title>Login page</title>
-
-
-
-<style type="text/css">
-   a:link {
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }  
-
-
-    button:hover {
-    background-color: #2E8B57;
-
-    }
-    
-
-	#para1 {
-    position: absolute;
-    top: 150px;
-    left:650px;
-    color:black;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 30px;		
-    }
- 
-    .loginbtn{
-	  background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 12px 15px;
-    position: absolute;
-    top:350px;
-    left:750px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-    cursor: pointer;
-	
-    }
-	
-	
-	#email{
-	width:20%;
-        height: 18px; 
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> -->
+        <!--Import materialize.css-->
+        <!-- <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <title>Login page</title>
+        <style type="text/css">
+        a:link {
+        text-decoration: none;
+        }
+        a:hover {
+        text-decoration: underline;
+        }
+        button:hover {
+        background-color: #2E8B57;
+        }
+        
+        #para1 {
+        position: absolute;
+        top: 150px;
+        left:650px;
+        color:black;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
+        }
+        
+        .loginbtn{
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 12px 15px;
+        position: absolute;
+        top:350px;
+        left:750px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        font-family: 'Montserrat', sans-serif;
+        cursor: pointer;
+        
+        }
+        
+        
+        #email{
+        width:20%;
+        height: 18px;
         position: absolute;
         top:248px;
         left:630px;
-		
-	
-	}
-	
-	#passwd{
-	width:20%;
-        height: 18px; 
+        
+        
+        }
+        
+        #passwd{
+        width:20%;
+        height: 18px;
         position: absolute;
         top:300px;
         left:630px;
-	
-	}
-
-
-  input[type=text]:focus {
-    border: 2px solid #4da6ff;
-   }
-
-   input[type=email]:focus {
-    border: 2px solid #4da6ff;
-	   
-   }
-
-   input[type=password]:focus {
-    border: 2px solid #4da6ff;
-	   
-   }
-
-   input:hover {
-    border-color: #778899;
-   }
-
-  .contactinfo{
-   background-color: #2F4F4F;
-   height: 190px;
-
-   }
-
-   .info {
-   margin-top: 65px;
-   margin-left: 5px;
-   }
-
-   #last {
-	color:white;
-	font-size: 18px;
-	font-family: 'Montserrat', sans-serif;
-	text-indent: 90px; 
-	position: absolute;
-        top: 646px;  
-   }
-
-  #clast {
-	color:white;
-	font-size: 18px;
-	font-family: 'Montserrat', sans-serif;
-	text-indent: 90px; 
-	position: absolute;
-        top: 722px;  
-   }
-
-   h2{
-	text-indent: 90px;
-	color: white;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 24px; 
-        font-weight:bold;  
+        
+        }
+        input[type=text]:focus {
+        border: 2px solid #4da6ff;
+        }
+        input[type=email]:focus {
+        border: 2px solid #4da6ff;
+        
+        }
+        input[type=password]:focus {
+        border: 2px solid #4da6ff;
+        
+        }
+        input:hover {
+        border-color: #778899;
+        }
+        .contactinfo{
+        background-color: #2F4F4F;
+        height: 190px;
+        }
+        .info {
+        margin-top: 65px;
+        margin-left: 5px;
+        }
+        #last {
+        color:white;
+        font-size: 18px;
+        font-family: 'Montserrat', sans-serif;
+        text-indent: 90px;
+        position: absolute;
+        top: 646px;
+        }
+        #clast {
+        color:white;
+        font-size: 18px;
+        font-family: 'Montserrat', sans-serif;
+        text-indent: 90px;
+        position: absolute;
+        top: 722px;
+        }
+        h2{
+        text-indent: 90px;
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+        font-weight:bold;
         position: absolute;
         top: 586px;
-       
-	   
-   }
-
-   .center {
-	 text-align: center;
-	 font-size: 20px;
-	 font-family: 'Montserrat', sans-serif;
-    }
-
-    .container {
-    background-color: lightgrey;
-    height: 324px;
-    width: 420px;
-    margin-top: 80px;
-    margin-left: 580px;
-    padding-top: 35px;
-    
-    
-    }
-
-    .one{
-    position: absolute;
-    top: 266px;
-    left: 620px;
-   
-    }
-
-      .two{
-    position: absolute;
-    top: 339px;
-    left: 620px;
-    
-    }
-
-     .forgot{
-    position: absolute;
-    top: 405px;
-    left: 650px;
-    }
-
-      .sign{
-    position: absolute;
-    top: 405px;
-    left: 830px;
-    }
-	
-
-
-
-	</style>
-</head>
-
-<body>
-
-    <form action="" class="center" >
-    <div class="container" >
-     <h2 id="para1">Login</h2>
-     <div class="info">	
-	<input id= "email" type="email" name="e-mail" placeholder="Email" required>
-	<br>
-	<br>
-	<input id= "passwd" type="password" name="password" placeholder="Password" required>
-
-  </div>
-	
-   <button class="loginbtn" type="submit">Log in</button>
-
-	<p style="font-size:90%;">
- <a href="forgotpassword.html" class="forgot" style="color:green"> forgot password? </a>
- <a href="signup.html" class="sign" style="color:green"> sign up </a>
-    </p>
-   
-    </div>
-    </form>
-   
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <footer>
-    <div class="contactinfo">
-    	<br>
-    	<h2> Connect </h2>
-    	<p id="last">hello@makersvalley.net </p>
+        
+        
+        }
+        .center {
+        text-align: center;
+        font-size: 20px;
+        font-family: 'Montserrat', sans-serif;
+        }
+        .container {
+        background-color: lightgrey;
+        height: 324px;
+        width: 420px;
+        margin-top: 80px;
+        margin-left: 580px;
+        padding-top: 35px;
+        
+        
+        }
+        .one{
+        position: absolute;
+        top: 266px;
+        left: 620px;
+        
+        }
+        .two{
+        position: absolute;
+        top: 339px;
+        left: 620px;
+        
+        }
+        .forgot{
+        position: absolute;
+        top: 405px;
+        left: 650px;
+        }
+        .sign{
+        position: absolute;
+        top: 405px;
+        left: 830px;
+        }
+        
+        </style>
+    </head>
+    <body>
+        <form action="" class="center" >
+            <div class="container" >
+                <h2 id="para1">Login</h2>
+                <div class="info">
+                    <input id= "email" type="email" name="e-mail" placeholder="Email" required>
+                    <br>
+                    <br>
+                    <input id= "passwd" type="password" name="password" placeholder="Password" required>
+                </div>
+                
+                <button class="loginbtn" type="submit">Log in</button>
+                <p style="font-size:90%;">
+                    <a href="forgotpassword.html" class="forgot" style="color:green"> forgot password? </a>
+                    <a href="signup.html" class="sign" style="color:green"> sign up </a>
+                </p>
+                
+            </div>
+        </form>
+        
         <br>
-        <p id="clast">&copy; 2018 Copyright </p>
-   
-    </div>
-    </footer>
-    <br>
-    <br>
- 
-</body>
+        <br>
+        <br>
+        <br>
+        <br>
+        <footer>
+            <div class="contactinfo">
+                <br>
+                <h2> Connect </h2>
+                <p id="last">hello@makersvalley.net </p>
+                <br>
+                <p id="clast">&copy; 2018 Copyright </p>
+                
+            </div>
+        </footer>
+        <br>
+        <br>
+        
+    </body>
 </html>
+-->

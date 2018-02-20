@@ -12,6 +12,11 @@
 	width: 50px;
 }
 
+
+.custom-btn {
+	background: #3ab449;
+}
+
 .bg-custom-color {
 	background: #3ab449;
 	margin: 5px;
@@ -31,6 +36,13 @@
 
 .sidenav {
 	z-index: 9999 !important;
+}
+
+.user-form {
+	border: 1px solid #c0c0c0;
+	padding: 10px;
+	margin-top: 20px;
+	border-radius: 5px;
 }
 /*styling for the logo*/
 .logo {
