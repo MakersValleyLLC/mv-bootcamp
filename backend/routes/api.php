@@ -39,7 +39,12 @@ Route::post('users/login', 'UsersController@login');
 //Route to log out
 Route::post('users/logout', 'UsersController@logout');
 
-Route::post('users/invitemail', 'UsersController@invitemail');
+//MAIL CONTROLLER
+Route::resource('mail', 'MailController');
+
+//Email APIs
+Route::post('mail/invite_email', 'MailController@invitemail');
+Route::post('mail/aignup_email', 'MailController@signupmail');
 
 
 
