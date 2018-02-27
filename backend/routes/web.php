@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
+
 //TEST
 Route::get('/test', function () {
     return view('test.test');

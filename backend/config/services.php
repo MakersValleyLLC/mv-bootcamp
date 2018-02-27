@@ -35,4 +35,12 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'sendgrid' => [
+    'api_key' => env('SSG.bk9I5m9YTly65P3XLwk5sQ.b2kD13TjwaPGcDMONEeN9a07O2r7AibP3EU_t_Gxpz0'),
+        'guzzle' => [
+        'verify' => true,
+        'decode_content' => true,
+    ]
+],
+
 ];

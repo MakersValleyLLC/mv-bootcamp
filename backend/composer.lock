@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f31406486fb922363468d8acc0b47e54",
+    "content-hash": "bd8d260d6164357a81e1815cdb1a4bda",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -118,6 +118,50 @@
                 "laravel"
             ],
             "time": "2018-01-04T06:59:27+00:00"
+        },
+        {
+            "name": "clarification/sendgrid-laravel-driver",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clarification/sendgrid-laravel-driver.git",
+                "reference": "c987ddb20be7de4409816b04675d75e79798c2cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/clarification/sendgrid-laravel-driver/zipball/c987ddb20be7de4409816b04675d75e79798c2cf",
+                "reference": "c987ddb20be7de4409816b04675d75e79798c2cf",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": ">=5.0",
+                "swiftmailer/swiftmailer": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Clarification\\MailDrivers\\Sendgrid\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin Lidbetter",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Sendgrid mail driver for Laravel",
+            "homepage": "http://clarification.io",
+            "keywords": [
+                "driver",
+                "laravel",
+                "mail",
+                "sendgrid"
+            ],
+            "time": "2017-12-29T18:30:26+00:00"
         },
         {
             "name": "defuse/php-encryption",
